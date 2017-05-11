@@ -17,7 +17,7 @@ export default function InfoItem({
       basis={'1'}
       heading={
         <Heading
-          tag='h3'
+          tag={'h3'}
           strong={true}
         >
           {heading}

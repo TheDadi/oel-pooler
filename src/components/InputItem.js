@@ -11,8 +11,8 @@ export default function InputItem({
 }) {
   return (
     <Box
-      pad='medium'
-      basis='1/3'
+      pad={'medium'}
+      basis={'1/3'}
     >
       <FormField
         label={label}

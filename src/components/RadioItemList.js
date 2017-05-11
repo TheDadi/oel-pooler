@@ -3,7 +3,9 @@ import Box from 'grommet/components/Box'
 import RadioItem from 'components/RadioItem'
 
 export default function RadioItemList({
+  name,
   options,
+  currentValue,
   onChange
 }) {
   return (
@@ -14,13 +16,15 @@ export default function RadioItemList({
       pad={'large'}
     >
       {
-        options.map(option => {
-          const {name, value, checked} = option
-
+        options.map((option,index) => {
+          const {label, value} = option
+          const checked = currentValue === value
           return (
             <RadioItem
+              key={index}
               name={name}
               value={value}
+              label={label}
               checked={checked}
               onChange={onChange}
             />

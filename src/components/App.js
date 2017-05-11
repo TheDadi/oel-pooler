@@ -15,7 +15,7 @@ export default function App (props) {
         flex='left'
         priority='right'
         separator={false}>
-        <div style={{'max-width': '100%'}}>
+        <div style={{'maxWidth': '100%'}}>
           <Navbar />
           <main id="content">
             {React.cloneElement(props.children, props)}

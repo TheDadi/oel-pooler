@@ -3,32 +3,70 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as LandingActionCreators from './actions'
-import Hero from 'grommet/components/Hero'
 import Box from 'grommet/components/Box'
 import Heading from 'grommet/components/Heading'
 import Paragraph from 'grommet/components/Paragraph'
-import FormField from 'grommet/components/FormField'
-import TextInput from 'grommet/components/TextInput'
-import Select from 'grommet/components/Select'
-import RadioButton from 'grommet/components/RadioButton'
+import Timestamp from 'grommet/components/Timestamp'
+import Layer from 'grommet/components/Layer'
 import Button from 'grommet/components/Button'
 import CheckmarkIcon from 'grommet/components/icons/base/Checkmark'
-import ClockIcon from 'grommet/components/icons/base/Clock'
-import Card from 'grommet/components/Card'
-import Anchor from 'grommet/components/Anchor'
+import MinusIcon from 'grommet/components/icons/base/Subtract'
+import PlusIcon from 'grommet/components/icons/base/Add'
 import RadioItemList from 'components/RadioItemList'
-import LocationIcon from 'components/LocationIcon'
+import InputItemList from 'components/InputItemList'
+import Info from 'components/Info'
 import OilImage from '../../assets/images/gas.jpg'
 
 class LandingContainer extends Component {
-  static propTypes = {
-    isLoading: PropTypes.bool.isRequired,
-    actions: PropTypes.object.isRequired,
-  }
-
   render () {
+    const {
+      actions:{
+        inputChanged,
+        optionSelected,
+        submitClicked,
+        closeModal
+      },
+      radios:{
+        options,
+        currentValue
+      },
+      inputs,
+      isModalOpen,
+      data: {
+        firstDate,
+        lastDate
+      }
+    } = this.props
     return (
       <div>
+        {isModalOpen &&
+        <Layer closer={true} align={'center'} onClose={closeModal}>
+          <Box pad={'large'} align="center" textAlign="center"
+            size={{ "width": { "max": "xxlarge" } }}>
+            <Heading tag="h3" strong={true}>
+              Vergleichsangaben
+            </Heading>
+            <Paragraph size="medium" width="large" margin="none">
+              {'Datum: '}
+              <Timestamp value={firstDate} fields='date' />
+              {' - '}
+              <Timestamp value={lastDate} fields='date' />
+            </Paragraph>
+          </Box>
+          <Box pad={'medium'}>
+            <Box colorIndex={'neutral-1'} pad={'medium'} direction={'row'} responsive={false}>
+              <Box basis={'full'}>test</Box>
+              <Button
+                onClick={()=> console.log('test')}
+                icon={
+                  <MinusIcon colorIndex={'light-1'}/>
+                }
+                size={'small'}
+              />
+            </Box>
+          </Box>
+        </Layer>
+        }
         <Box align="center" pad={{ vertical: "large", between: "small" }}>
           <Box pad={{ horizontal: "large" }} align="center" textAlign="center"
             size={{ "width": { "max": "xxlarge" } }}>
@@ -40,79 +78,53 @@ class LandingContainer extends Component {
             </Paragraph>
           </Box>
           <RadioItemList
-            options={
-              [
-                {
-
-                }
-              ]
-            }
-            onChange={}
+            name={'oil'}
+            currentValue={currentValue}
+            options={options}
+            onChange={optionSelected}
           />
-          <Box size={{ width: "xxlarge" }} direction="row" justify='between' pad={'large'}>
-
-            <Box pad="medium">
-              <RadioButton id='choice1-2'
-                name='choice1-2'
-                label='Heizöl öko schwefelarm'
-                checked={false} />
-            </Box>
-            <Box pad="medium">
-              <RadioButton id='choice1-2'
-                name='choice1-2'
-                label='Heizöl Dieselqualität'
-                checked={false}/>
-            </Box>
-          </Box>
-          <Box direction="row" full={'horizontal'} colorIndex={'brand'}>
-            <Box pad="medium" basis="1/3">
-              <FormField label='Wieviel?' colorIndex={'brand'}>
-                <TextInput />
-              </FormField>
-            </Box>
-            <Box pad="medium" basis="1/3">
-              <FormField label='Wann?'>
-                <Select />
-              </FormField>
-            </Box>
-            <Box pad="medium" basis="1/3">
-              <FormField label='Wohin?'>
-                <TextInput />
-              </FormField>
-            </Box>
-          </Box>
+          <InputItemList items={inputs}
+            onChange={inputChanged}
+          />
           <Box direction="row" full={'horizontal'} pad='medium' align={'center'} justify={'center'}>
             <Button size='large' icon={<CheckmarkIcon />}
               className={'button--submit'}
               label='Angebote vergleichen'
-              href='#'
+              onClick={submitClicked}
               primary={false}
               secondary={true} />
           </Box>
         </Box>
-        <Hero size={{height:'small', width:'full'}} backgroundImage={OilImage} colorIndex="light-1" justify="start">
-          <Card
-            className={'hero__card'}
-            basis='1'
-            heading={
-              <Heading tag='h3' strong={true}>
-                Oelpreis könnte sich leicht erholen
-              </Heading>
-            }
-            contentPad={'small'}
-            description="Nachdem die Preise in den letzten Tagen immer nachgegeben haben, sind viele Fachleute der Meinung, der Preis könnte sich in den nächsten Tagen wieder etwas erholen."
-            size={{width:"xxlarge"}}
-            link={
-              <Anchor href="/about" primary={true} label="Mehr erfahren" />
-            } />
-        </Hero>
+        <Info
+          image={OilImage}
+          items={
+            [
+              {
+                heading: 'Oelpreis könnte sich leicht erholen',
+                description: 'Nachdem die Preise in den letzten Tagen immer nachgegeben haben, sind viele Fachleute der Meinung, der Preis könnte sich in den nächsten Tagen wieder etwas erholen.',
+                anchor: {
+                  href: '/about',
+                  label: 'Mehr erfahren'
+                }
+              }
+            ]
+          }
+        />
       </div>
     )
   }
 }
 
 // mapStateToProps :: {State} -> {Props}
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => {
+  console.log(state)
+  return ({
+    radios: state.landing.radios,
+    inputs: state.landing.inputs,
+    isModalOpen: state.landing.isModalOpen,
+    data: state.landing.data
+  })
+}
 // mapDispatchToProps :: Dispatch -> {Action}
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(

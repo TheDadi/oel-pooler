@@ -14,7 +14,7 @@ export default function InfoItem({
   return (
     <Card
       className={'info__item'}
-      basis={'1'}
+      basis={'full'}
       heading={
         <Heading
           tag={'h3'}

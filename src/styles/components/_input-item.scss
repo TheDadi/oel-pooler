@@ -1,0 +1,10 @@
+.input__item {
+  &::placeholder {
+    color: hsla(0, 0%, 100%, .85);
+  }
+  input {
+    &::placeholder {
+      color: hsla(0, 0%, 100%, .85);
+    }
+  }
+}

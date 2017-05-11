@@ -1,4 +1,4 @@
-const DEFAULT_PAGE_TITLE = 'Restaurant Reviewer';
+const DEFAULT_PAGE_TITLE = 'Oel Pooler';
 
 export function updatePageTitle(title) {
   if (document) {

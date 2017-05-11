@@ -26,7 +26,8 @@ class LandingContainer extends Component {
         closeModal,
         checkItemChanged,
         checkItemRemoved,
-        checkItemAdded
+        checkItemAdded,
+        compareClicked
       },
       radios:{
         options,
@@ -57,6 +58,9 @@ class LandingContainer extends Component {
           </Box>
           <CheckItemList
             items={items} onChange={checkItemChanged} onRemove={checkItemRemoved} onAdd={checkItemAdded}/>
+          <Box align={'center'} pad={'small'}>
+            <Button primary={true} onClick={()=> compareClicked()}>Jetzt vergleichen!</Button>
+          </Box>
         </Layer>
         }
         <Box align="center" pad={{ vertical: "large", between: "small" }}>

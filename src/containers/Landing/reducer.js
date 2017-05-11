@@ -9,7 +9,8 @@ import {
   checkItemAdded,
   checkItemChanged,
   checkItemRemoved,
-  checkItemPrefil
+  checkItemPrefil,
+  setDataItems
 } from './actions'
 
 
@@ -153,6 +154,13 @@ const reducer = handleActions({
       data: {
         ...state.data,
         items: state.data.items.filter((item, index) => index !== payload.index)
+      }
+    }),
+    [setDataItems]: (state, { payload }) => ({
+      ...state,
+      data: {
+        ...state.data,
+        items: payload
       }
     }),
     [checkItemAdded]: (state, { payload }) => ({

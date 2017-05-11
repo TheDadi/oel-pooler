@@ -19,7 +19,6 @@ export default function InputItem ({
     <Box
       pad={'medium'}
       basis={'1/3'}
-      colorIndex={'brand'}
     >
       <FormField
         label={label}

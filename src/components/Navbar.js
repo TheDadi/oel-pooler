@@ -9,7 +9,7 @@ import { Link } from 'react-router'
 
 export default function Navbar() {
   return (
-    <Header justify='between' className={'navbar'} colorIndex={'brand'}>
+    <Header justify='between' className={'navbar'} colorIndex='brand'>
       <Title>
         <Link to='/'>
           <AppLogo className={'navbar__logo'}/>

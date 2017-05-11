@@ -15,7 +15,7 @@ import PlusIcon from 'grommet/components/icons/base/Add'
 import RadioItemList from 'components/RadioItemList'
 import InputItemList from 'components/InputItemList'
 import Info from 'components/Info'
-import OilImage from '../../assets/images/gas.jpg'
+import OilImage from 'assets/images/gas.jpg'
 
 class LandingContainer extends Component {
   render () {
@@ -42,7 +42,7 @@ class LandingContainer extends Component {
         {isModalOpen &&
         <Layer closer={true} align={'center'} onClose={closeModal}>
           <Box pad={'large'} align="center" textAlign="center"
-            size={{ "width": { "max": "xxlarge" } }}>
+               size={{ "width": { "max": "xxlarge" } }}>
             <Heading tag="h3" strong={true}>
               Vergleichsangaben
             </Heading>
@@ -69,7 +69,7 @@ class LandingContainer extends Component {
         }
         <Box align="center" pad={{ vertical: "large", between: "small" }}>
           <Box pad={{ horizontal: "large" }} align="center" textAlign="center"
-            size={{ "width": { "max": "xxlarge" } }}>
+               size={{ "width": { "max": "xxlarge" } }}>
             <Heading tag="h1" strong={true}>
               Ölpreise einfach vergleichen
             </Heading>
@@ -84,15 +84,15 @@ class LandingContainer extends Component {
             onChange={optionSelected}
           />
           <InputItemList items={inputs}
-            onChange={inputChanged}
+                         onChange={inputChanged}
           />
           <Box direction="row" full={'horizontal'} pad='medium' align={'center'} justify={'center'}>
             <Button size='large' icon={<CheckmarkIcon />}
-              className={'button--submit'}
-              label='Angebote vergleichen'
-              onClick={submitClicked}
-              primary={false}
-              secondary={true} />
+                    className={'button--submit'}
+                    label='Angebote vergleichen'
+                    onClick={submitClicked}
+                    primary={false}
+                    secondary={true} />
           </Box>
         </Box>
         <Info

@@ -39,7 +39,7 @@ export const submitClicked = () => (dispatch, getState) => {
       todayClone.setDate(todayClone.getDate() + 3)
       dispatch(setDates({first: today, last: todayClone}))
     }else{
-      todayClone.setMonth(todayClone.getMonth() + 3)
+      todayClone.setDate(todayClone.getDate() + 21)
       dispatch(setDates({first: today, last: todayClone}))
     }
 

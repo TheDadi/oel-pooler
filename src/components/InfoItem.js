@@ -1,6 +1,7 @@
 import React, {Component}  from 'react'
-import Card from 'grommet/components/Card'
+import Box from 'grommet/components/Box'
 import Heading from 'grommet/components/Heading'
+import Paragraph from 'grommet/components/Paragraph'
 import Anchor from 'grommet/components/Anchor'
 
 export default function InfoItem({
@@ -12,31 +13,24 @@ export default function InfoItem({
   const {href, label} = anchor
 
   return (
-    <Card
+    <Box
       className={'info__item'}
-      basis={'full'}
-      heading={
-        <Heading
-          tag={'h3'}
-          strong={true}
-        >
-          {heading}
-        </Heading>
-      }
-      contentPad={'small'}
-      description={description}
-      size={
-        {
-          width: 'xxlarge'
-        }
-      }
-      link={
-        <Anchor
-          href={href}
-          primary={true}
-          label={label}
-        />
-      }
-    />
+      pad={'medium'}
+      basis={'full'}>
+      <Heading
+        tag={'h3'}
+        strong={true}
+      >
+        {heading}
+      </Heading>
+      <Paragraph>
+        {description}
+      </Paragraph>
+      <Anchor
+        href={href}
+        primary={true}
+        label={label}
+      />
+    </Box>
   )
 }

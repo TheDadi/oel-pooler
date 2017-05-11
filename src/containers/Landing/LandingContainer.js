@@ -16,8 +16,9 @@ import CheckmarkIcon from 'grommet/components/icons/base/Checkmark'
 import ClockIcon from 'grommet/components/icons/base/Clock'
 import Card from 'grommet/components/Card'
 import Anchor from 'grommet/components/Anchor'
+import RadioItemList from 'components/RadioItemList'
 import LocationIcon from 'components/LocationIcon'
-import OilImage from './assets/gas.jpg'
+import OilImage from '../../assets/images/gas.jpg'
 
 class LandingContainer extends Component {
   static propTypes = {
@@ -38,13 +39,18 @@ class LandingContainer extends Component {
               In wenigen Schritten zum passenden Angebot. Anbieter direkt vergleichen und sofort bestellen.
             </Paragraph>
           </Box>
+          <RadioItemList
+            options={
+              [
+                {
+
+                }
+              ]
+            }
+            onChange={}
+          />
           <Box size={{ width: "xxlarge" }} direction="row" justify='between' pad={'large'}>
-            <Box pad="medium">
-              <RadioButton id='choice1-1'
-                name='choice1-1'
-                label='Heizöl extra-leicht'
-                checked={true} />
-            </Box>
+
             <Box pad="medium">
               <RadioButton id='choice1-2'
                 name='choice1-2'

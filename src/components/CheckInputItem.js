@@ -14,7 +14,7 @@ export default function CheckInputItem ({
   onChange
 }) {
   const _onChange = ({ target: { value } }) => onChange({index,name, value})
-  const _onSelect = ({ value: { value } }) => onChange({index, name, value})
+  const _onSelect = ({value}) => onChange({index,name, value})
   return (
     <FormField
       label={label}

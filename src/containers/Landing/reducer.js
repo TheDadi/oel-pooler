@@ -1,24 +1,35 @@
 import { handleActions } from 'redux-actions'
-import { inputChanged, optionSelected, inputError, setDates, closeModal, openModal } from './actions'
+import {
+  inputChanged,
+  optionSelected,
+  inputError,
+  setDates,
+  closeModal,
+  openModal,
+  checkItemAdded,
+  checkItemChanged,
+  checkItemRemoved,
+  checkItemPrefil
+} from './actions'
 
 
 const initialState = {
-  isModalOpen: true,
+  isModalOpen: false,
   radios: {
-    currentValue: 'extra-light',
+    currentValue: 'Heizöl extra-leicht',
     options: [
       {
         label: 'Heizöl extra-leicht',
-        value: 'extra-light'
+        value: 'Heizöl extra-leicht'
       },
       {
-        label: 'Heizöl extra-leicht',
-        value: 'suslfur-low'
+        label: 'Heizöl öko schwefelarm',
+        value: 'Heizöl öko schwefelarm'
       }
       ,
       {
-        label: 'Heizöl extra-leicht',
-        value: 'diesel-quality'
+        label: 'Heizöl Dieselqualität',
+        value: 'Heizöl Dieselqualität'
       }
     ]
   },
@@ -57,60 +68,142 @@ const initialState = {
   ],
   data: {
     firstDate: new Date(),
-    lastDate: new Date()
+    lastDate: new Date(),
+    items: []
   }
 };
 
 
 const reducer = handleActions({
-  [inputChanged]: (state, { payload }) => ({
-    ...state,
-    inputs: [...state.inputs.map((input) => {
-      if (payload.name === input.name) {
-        return {
-          ...input,
-          value: payload.value
+    [inputChanged]: (state, { payload }) => ({
+      ...state,
+      inputs: [...state.inputs.map((input) => {
+        if (payload.name === input.name) {
+          return {
+            ...input,
+            value: payload.value
+          }
         }
-      }
-      return input
-    })
-    ]
-  }),
-  [inputError]: (state, { payload }) => ({
-    ...state,
-    inputs: [...state.inputs.map((input) => {
-      if (payload.name === input.name) {
-        return {
-          ...input,
-          error: payload.error
+        return input
+      })
+      ]
+    }),
+    [inputError]: (state, { payload }) => ({
+      ...state,
+      inputs: [...state.inputs.map((input) => {
+        if (payload.name === input.name) {
+          return {
+            ...input,
+            error: payload.error
+          }
         }
+        return input
+      })
+      ]
+    }),
+    [optionSelected]: (state, { payload }) => ({
+      ...state,
+      radios: {
+        ...state.radios,
+        currentValue: payload
       }
-      return input
+    }),
+    [setDates]: (state, { payload:{ first, last } }) => ({
+      ...state,
+      data: {
+        ...state.data,
+        firstDate: first,
+        lastDate: last
+      }
+    }),
+    [openModal]: (state, { payload }) => ({
+      ...state,
+      isModalOpen: true
+    }),
+    [closeModal]: (state, { payload }) => ({
+      ...state,
+      isModalOpen: false,
+      data: {
+        ...state.data,
+        items: []
+      }
+    }),
+    [checkItemChanged]: (state, { payload }) => ({
+      ...state,
+      data: {
+        ...state.data,
+        items: [...state.data.items.map((item, index) => {
+          console.log('test', payload.index, index)
+          if (payload.index === index) {
+            return {
+              ...item,
+            [payload.name]:{
+              ...item[payload.name],
+              value: payload.value
+            }
+            }
+          }
+          return item
+        })
+        ]
+      }
+    }),
+    [checkItemRemoved]: (state, { payload }) => ({
+      ...state,
+      data: {
+        ...state.data,
+        items: state.data.items.filter((item, index) => index !== payload.index)
+      }
+    }),
+    [checkItemAdded]: (state, { payload }) => ({
+      ...state,
+      data: {
+        ...state.data,
+        items: [...state.data.items, {
+          numberOf: {
+            value: '1',
+            error: null
+          },
+          howMuch: {
+            value: '',
+            error: null
+          },
+          what: {
+            value: '',
+            error: null
+          },
+          where: {
+            value: '',
+            error: null
+          }
+        }]
+      }
+    }),
+    [checkItemPrefil]: (state, { payload }) => ({
+      ...state,
+      data: {
+        ...state.data,
+        items: [...state.data.items, {
+          numberOf: {
+            value: '1',
+            error: null
+          },
+          howMuch: {
+            value: payload.howMuch,
+            error: null
+          },
+          what: {
+            value: payload.what,
+            error: null
+          },
+          where: {
+            value: payload.where,
+            error: null
+          }
+        }]
+      }
     })
-    ]
-  }),
-  [optionSelected]: (state, { payload }) => ({
-    ...state,
-    radios: {
-      ...state.radios,
-      currentValue: payload
-    }
-  }),
-  [setDates]: (state, { payload:{ first, last } }) => ({
-    ...state,
-    data: {
-      firstDate: first,
-      lastDate: last
-    }
-  }),
-  [openModal]: (state, { payload }) => ({
-    ...state,
-    isModalOpen: true
-  }),
-  [closeModal]: (state, { payload }) => ({
-    ...state,
-    isModalOpen: false
-  })
-}, initialState);
+  },
+  initialState);
 
 export default reducer;

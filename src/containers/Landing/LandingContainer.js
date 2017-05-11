@@ -10,8 +10,7 @@ import Timestamp from 'grommet/components/Timestamp'
 import Layer from 'grommet/components/Layer'
 import Button from 'grommet/components/Button'
 import CheckmarkIcon from 'grommet/components/icons/base/Checkmark'
-import MinusIcon from 'grommet/components/icons/base/Subtract'
-import PlusIcon from 'grommet/components/icons/base/Add'
+import CheckItemList from 'components/CheckItemList'
 import RadioItemList from 'components/RadioItemList'
 import InputItemList from 'components/InputItemList'
 import Info from 'components/Info'
@@ -24,7 +23,10 @@ class LandingContainer extends Component {
         inputChanged,
         optionSelected,
         submitClicked,
-        closeModal
+        closeModal,
+        checkItemChanged,
+        checkItemRemoved,
+        checkItemAdded
       },
       radios:{
         options,
@@ -34,15 +36,15 @@ class LandingContainer extends Component {
       isModalOpen,
       data: {
         firstDate,
-        lastDate
+        lastDate,
+        items
       }
     } = this.props
     return (
       <div>
         {isModalOpen &&
-        <Layer closer={true} align={'center'} onClose={closeModal}>
-          <Box pad={'large'} align="center" textAlign="center"
-               size={{ "width": { "max": "xxlarge" } }}>
+        <Layer closer={true} align={'center'} onClose={closeModal} peek={true}>
+          <Box pad={'medium'} align="center" textAlign="center">
             <Heading tag="h3" strong={true}>
               Vergleichsangaben
             </Heading>
@@ -53,18 +55,8 @@ class LandingContainer extends Component {
               <Timestamp value={lastDate} fields='date' />
             </Paragraph>
           </Box>
-          <Box pad={'medium'}>
-            <Box colorIndex={'neutral-1'} pad={'medium'} direction={'row'} responsive={false}>
-              <Box basis={'full'}>test</Box>
-              <Button
-                onClick={()=> console.log('test')}
-                icon={
-                  <MinusIcon colorIndex={'light-1'}/>
-                }
-                size={'small'}
-              />
-            </Box>
-          </Box>
+          <CheckItemList
+            items={items} onChange={checkItemChanged} onRemove={checkItemRemoved} onAdd={checkItemAdded}/>
         </Layer>
         }
         <Box align="center" pad={{ vertical: "large", between: "small" }}>

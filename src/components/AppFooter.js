@@ -11,29 +11,31 @@ export default function AppFooter () {
     <Box direction='row'
       justify='between'
       align='center'
+      responsive={false}
       pad={"medium"} colorIndex={'light-2'} full='horizontal'>
       <Paragraph margin='none'>
         © 2016 Oel Pooler
       </Paragraph>
-      <Box direction={'row'}>
+      <Box direction={'row'}
+        responsive={false}>
         <SocialShare
           a11yTitle='Go to Facebook to Share this website'
           type='facebook'
-          link='http://restaurant-reviewer-client.herokuapp.com'
-          text='A11y Restaurant Reviewer App'
+          link=''
+          text='OelPooler'
         />
         <SocialShare
           a11yTitle='Go to Twitter to Share this website'
           type='twitter'
-          link='http://restaurant-reviewer-client.herokuapp.com'
-          text='A11y Restaurant Reviewer App'
+          link=''
+          text='OelPooler'
         />
         <SocialShare
           a11yTitle='Go to Linkedin to Share this website'
           type='linkedin'
-          link='http://restaurant-reviewer-client.herokuapp.com'
+          link=''
           title='Restaurant Reviewer'
-          text='A11y Restaurant Reviewer App'
+          text='OelPooler'
         />
       </Box>
     </Box>

@@ -7,10 +7,14 @@ export const formSubmitted = createAction('FORM_SUBMITTED')
 export const setDates = createAction('SET_DATES')
 export const closeModal = createAction('CLOSE_MODAL')
 export const openModal = createAction('OPEN_MODAL')
+export const checkItemChanged = createAction('CHECK_ITEM_CHANGED')
+export const checkItemAdded = createAction('CHECK_ITEM_ADDED')
+export const checkItemPrefil = createAction('CHECK_ITEM_PREFIL')
+export const checkItemRemoved = createAction('CHECK_ITEM_REMOVED')
 
 export const submitClicked = () => (dispatch, getState) => {
   const { landing } = getState()
-  const { inputs } = landing
+  const { inputs, radios } = landing
 
   let isOk = true
   let when = null;
@@ -42,7 +46,14 @@ export const submitClicked = () => (dispatch, getState) => {
       todayClone.setDate(todayClone.getDate() + 21)
       dispatch(setDates({first: today, last: todayClone}))
     }
-
+    let values = {}
+     inputs.forEach(input => {
+       const { value, name, error } = input
+        values[name] = value
+    })
+    console.log(values)
+    const {howMuch, where} = values;
+    dispatch(checkItemPrefil({howMuch, where, what: radios.currentValue}))
     dispatch(formSubmitted())
     dispatch(openModal())
   }

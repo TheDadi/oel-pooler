@@ -12,6 +12,9 @@ app.use(express.static('./dist'))
 // Define the port to run on
 app.set('port', process.env.PORT);
 
+app.get('*', function(req, res){
+  res.sendFile('index.html');
+});
 // Listen for requests
 var server = app.listen(app.get('port'), function() {
   var port = server.address().port;

@@ -58,8 +58,9 @@
       }
     },
     "start": {
-      "command": "node bin/dev-server",
+      "command": "node server/main",
       "env": {
+        "NODE_ENV": "production",
         "DEBUG": "app:*"
       }
     },

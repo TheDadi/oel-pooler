@@ -41,7 +41,7 @@ class LandingContainer extends Component {
     return (
       <div>
         <Box align="center" pad={{vertical: "large", between: "small", horizontal: 'large'}}>
-          <Box pad={{horizontal: "large"}} align="start" textAlign="start"
+          <Box align="start" textAlign="start"
                size={{"width": {"max": "xxlarge"}}}>
             <Box pad={{vertical: "large"}}>
             <Heading tag="h1" strong={true}>

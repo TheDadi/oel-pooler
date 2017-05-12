@@ -12,7 +12,7 @@ The primary goal of this project is to remain as **unopinionated** as possible. 
 
 Finally, This project wouldn't be possible without the help of our many contributors, so [thank you](#thank-you) for all of your help.
 
-## Table of Contents
+## Table of Contents 
 1. [Features](#features)
 1. [Requirements](#requirements)
 1. [Getting Started](#getting-started)

@@ -1,4 +1,9 @@
+
+.info {
+  min-height: 350px;
+}
 .info__item {
+  max-height: 300px;
   background-color:rgba(245, 245, 245, 0.8);
   flex: 1;
 }

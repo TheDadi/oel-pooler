@@ -14,9 +14,9 @@ export default function CheckItem ({
   onRemove
 }) {
   return (
-    <Box pad={'small'} direction={'row'} responsive={false}>
+    <Box pad={'small'} direction={'row'}>
       <Box basis={'full'} direction={'column'}>
-        <Box direction={'row'} pad={'small'}>
+        <Box direction={'row'} >
           <CheckInputItem
             index={index}
             name={'numberOf'}
@@ -35,7 +35,7 @@ export default function CheckItem ({
             onChange={onChange}
           />
         </Box>
-        <Box direction={'row'} pad={'small'}>
+        <Box direction={'row'}>
           <CheckInputItem
             index={index}
             name={'howMuch'}

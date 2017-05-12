@@ -8,7 +8,7 @@ import PlusIcon from 'grommet/components/icons/base/Add'
 export default function CheckItemList ({ items, onChange, onRemove, onAdd }) {
   console.log(items)
   return (
-    <Box>
+    <Box responsive={false}>
       {
         items.map((item, index) => {
           console.log(item)

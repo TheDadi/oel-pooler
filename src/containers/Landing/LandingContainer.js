@@ -44,7 +44,7 @@ class LandingContainer extends Component {
     return (
       <div>
         {isModalOpen &&
-        <Layer closer={true} align={'center'} onClose={closeModal} peek={true}>
+        <Layer closer={true} align={'center'} onClose={closeModal} peek={true} flush={true}>
           <Box pad={'medium'} align="center" textAlign="center">
             <Heading tag="h3" strong={true}>
               Vergleichsangaben

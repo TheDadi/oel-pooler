@@ -1,14 +1,16 @@
 import React, {Component}  from 'react'
-import Hero from 'grommet/components/Hero'
+import Box from 'grommet/components/Box'
 import InfoItem from 'components/InfoItem'
 
 export default function Info({image, items}) {
 
   return (
-    <Hero
-      backgroundImage={image}
+    <Box
+      texture={image}
       colorIndex={'light-1'}
-      justify={'start'}>
+      className={'info'}
+      align={'center'}
+      justify={'center'}>
       {
         items.map((item,index) => {
           const {heading, description, anchor} = item
@@ -23,6 +25,6 @@ export default function Info({image, items}) {
           )
         })
       }
-    </Hero>
+    </Box>
   )
 }

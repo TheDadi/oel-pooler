@@ -40,9 +40,8 @@ class LandingContainer extends Component {
     } = this.props
     return (
       <div>
-        <Box align="center" pad={{vertical: "large", between: "small", horizontal: 'large'}}>
-          <Box align="start" textAlign="start"
-               size={{"width": {"max": "xxlarge"}}}>
+        <Box align="center">
+          <Box align="center">
             <Box pad={{vertical: "large"}}>
             <Heading tag="h1" strong={true}>
               Ihre Angebote
@@ -70,6 +69,7 @@ class LandingContainer extends Component {
                   <Button primary={true} onClick={()=> console.log('button clicked')}>Bestellen</Button>
                 </td>
               </TableRow>
+
               <TableRow>
                 <td>
                   Kuhn

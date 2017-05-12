@@ -13,7 +13,7 @@ app.use(express.static('./dist'))
 app.set('port', process.env.PORT);
 
 app.get('*', function(req, res){
-  res.sendFile('index.html');
+  res.sendFile('./dist/index.html');
 });
 // Listen for requests
 var server = app.listen(app.get('port'), function() {
